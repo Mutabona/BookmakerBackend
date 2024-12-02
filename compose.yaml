@@ -1,0 +1,42 @@
+﻿services:
+  bookmakerbackend.api:
+    image: bookmakerbackend.api
+    container_name: api
+    build:
+      context: .
+      dockerfile: src/BookmakerBackend.Api/Dockerfile
+    environment:
+      - ConnectionStrings__DbConnection=Server=postgres;Database=postgres;Username=postgres;Password=password;Port=5432
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:8080"
+    networks:
+      - bookmaker-network
+
+  postgres:
+    image: postgres
+    container_name: database
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1000M
+        reservations:
+          cpus: '0.25'
+          memory: 500M
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - bookmaker-network
+
+
+volumes:
+  pg-data:
+
+networks:
+  bookmaker-network:

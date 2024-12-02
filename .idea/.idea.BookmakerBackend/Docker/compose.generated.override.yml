@@ -1,0 +1,20 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  bookmakerbackend.api:
+    build:
+      context: "/home/mutabona/repos/BookmakerBackend"
+      dockerfile: "src/BookmakerBackend.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/BookmakerBackend.Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "bookmakerbackend.api:dev"
+    ports: []
+    volumes:
+    - "/home/mutabona/repos/BookmakerBackend/src/BookmakerBackend.Api:/app:rw"
+    - "/home/mutabona/repos/BookmakerBackend:/src:rw"
+    - "/home/mutabona/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
