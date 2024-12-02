@@ -27,10 +27,6 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=postgres;Username=postgres;Password=password;Port=5432");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
@@ -68,6 +64,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Status)
+                .HasColumnName("status")
                 .HasConversion(
                     v => v.ToString(),
                     v => (BetStatus)Enum.Parse(typeof(BetStatus), v)
@@ -96,6 +93,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Type)
+                .HasColumnName("type")
                 .HasConversion(
                     v => v.ToString(),
                     v => Enum.Parse<CoefficientType>(v));
@@ -137,6 +135,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Result)
+                .HasColumnName("result")
                 .HasConversion(
                     e => e.ToString(),
                     e => (ResultStatus)Enum.Parse(typeof(ResultStatus), e));
@@ -188,6 +187,7 @@ public partial class ApplicationDbContext : DbContext
             
             entity
                 .Property(e => e.Type)
+                .HasColumnName("type")
                 .HasConversion(
                     e => e.ToString(),
                     e => (TransactionType)Enum.Parse(typeof(TransactionType), e));

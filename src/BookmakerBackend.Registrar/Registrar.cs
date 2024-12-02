@@ -1,3 +1,4 @@
+using AutoMapper;
 using BookmakerBackend.AppServices.Contexts.Bets.Repositories;
 using BookmakerBackend.AppServices.Contexts.Bets.Services;
 using BookmakerBackend.AppServices.Contexts.Coefficients.Repositories;
@@ -14,6 +15,7 @@ using BookmakerBackend.AppServices.Contexts.Users.Services;
 using BookmakerBackend.AppServices.Services;
 using BookmakerBackend.DataAccess.Context;
 using BookmakerBackend.DataAccess.Repositories;
+using BookmakerBackend.Registrar.MapProfiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,7 +43,7 @@ public static class Registrar
         services.AddScoped<ICoefficientRepository, CoefficientRepository>();
         services.AddScoped<IEventRepository, EventRepository>();
         
-        //services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+        services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
         
         services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());
 
@@ -50,22 +52,16 @@ public static class Registrar
         return services;
     }
 
-    // private static MapperConfiguration GetMapperConfiguration()
-    // {
-    //     var configuration = new MapperConfiguration(cfg =>
-    //     {
-    //         cfg.AddProfile<UserProfile>();
-    //         cfg.AddProfile<PatientProfile>();
-    //         cfg.AddProfile<HistoryProfile>();
-    //         cfg.AddProfile<ExaminationProfile>();
-    //         cfg.AddProfile<AppointmentProfile>();
-    //         cfg.AddProfile<AnalysisProfile>();
-    //         cfg.AddProfile<MarkProfile>();
-    //     });
-    //     
-    //     configuration.AssertConfigurationIsValid();
-    //     return configuration;
-    // }
+    private static MapperConfiguration GetMapperConfiguration()
+    {
+        var configuration = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<CoefficientProfile>();
+        });
+        
+        configuration.AssertConfigurationIsValid();
+        return configuration;
+    }
 
     // private static IServiceCollection AddFluentValidation(this IServiceCollection services)
     // {
