@@ -12,7 +12,6 @@ public class CoefficientRepository : ICoefficientRepository
 {
     private DbContext DbContext { get; }
     private DbSet<Coefficient> Coefficients { get; }
-
     private readonly IMapper _mapper;
 
     public CoefficientRepository(DbContext dbContext, IMapper mapper)
