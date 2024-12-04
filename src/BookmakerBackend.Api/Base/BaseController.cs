@@ -12,10 +12,10 @@ public class BaseController : ControllerBase
     /// Получает логин аутентифицированного пользователя.
     /// </summary>
     /// <returns>Логин пользователя.</returns>
-    protected Guid GetCurrentUserUsername()
+    protected string GetCurrentUserUsername()
     {
-        var id = Guid.Parse(HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Name).Value);
-        return id;
+        var username = HttpContext.User.Claims.First(c => c.Type == ClaimTypes.Name).Value;
+        return username;
     }
 
     /// <summary>

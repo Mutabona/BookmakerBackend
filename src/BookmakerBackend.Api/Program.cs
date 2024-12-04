@@ -1,10 +1,12 @@
 using System.Text;
 using BookmakerBackend.Api.Controllers;
+using BookmakerBackend.Api.Middlewares;
 using BookmakerBackend.Contracts.Users;
 using BookmakerBackend.DataAccess.Context;
 using BookmakerBackend.Domain.Enums;
 using BookmakerBackend.Registrar;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -76,6 +78,8 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

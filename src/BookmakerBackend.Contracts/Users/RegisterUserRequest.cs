@@ -1,12 +1,12 @@
 namespace BookmakerBackend.Contracts.Users;
 
 /// <summary>
-/// Модель пользователя.
+/// Запрос на создание пользователя.
 /// </summary>
-public class UserDto
+public class RegisterUserRequest
 {
     public string Username { get; set; } = null!;
-    
+
     public string Password { get; set; } = null!;
 
     public string? FullName { get; set; }
@@ -16,8 +16,4 @@ public class UserDto
     public string? Email { get; set; }
 
     public string? Phone { get; set; }
-
-    public decimal? Balance { get; set; }
-
-    public string? Role { get; set; }
 }

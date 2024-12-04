@@ -3,7 +3,6 @@ using BookmakerBackend.AppServices.Contexts.Bets.Repositories;
 using BookmakerBackend.AppServices.Contexts.Bets.Services;
 using BookmakerBackend.AppServices.Contexts.Coefficients.Repositories;
 using BookmakerBackend.AppServices.Contexts.Coefficients.Services;
-using BookmakerBackend.AppServices.Contexts.Commands.Services;
 using BookmakerBackend.AppServices.Contexts.Events.Repositories;
 using BookmakerBackend.AppServices.Contexts.Events.Services;
 using BookmakerBackend.AppServices.Contexts.Teams.Repositories;
@@ -57,6 +56,7 @@ public static class Registrar
         var configuration = new MapperConfiguration(cfg =>
         {
             cfg.AddProfile<CoefficientProfile>();
+            cfg.AddProfile<UserProfile>();
         });
         
         configuration.AssertConfigurationIsValid();

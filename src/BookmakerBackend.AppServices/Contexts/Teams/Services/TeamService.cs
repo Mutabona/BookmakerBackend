@@ -1,9 +1,9 @@
-using BookmakerBackend.AppServices.Contexts.Teams.Services;
+using BookmakerBackend.AppServices.Contexts.Teams.Repositories;
 
-namespace BookmakerBackend.AppServices.Contexts.Commands.Services;
+namespace BookmakerBackend.AppServices.Contexts.Teams.Services;
 
 /// <inheritdoc cref="ITeamService"/>
-public class TeamService : ITeamService
+public class TeamService(ITeamRepository repository) : ITeamService
 {
     
 }
