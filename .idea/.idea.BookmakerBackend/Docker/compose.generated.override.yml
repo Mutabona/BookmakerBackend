@@ -2,7 +2,7 @@
 services:
   bookmakerbackend.api:
     build:
-      context: "/home/mutabona/repos/BookmakerBackend"
+      context: "C:\\Users\\k_dod\\source\\repos\\BookmakerBackend"
       dockerfile: "src/BookmakerBackend.Api/Dockerfile"
       target: "base"
     command: []
@@ -14,7 +14,7 @@ services:
     image: "bookmakerbackend.api:dev"
     ports: []
     volumes:
-    - "/home/mutabona/repos/BookmakerBackend/src/BookmakerBackend.Api:/app:rw"
-    - "/home/mutabona/repos/BookmakerBackend:/src:rw"
-    - "/home/mutabona/.nuget/packages:/home/app/.nuget/packages"
+    - "C:\\Users\\k_dod\\source\\repos\\BookmakerBackend\\src\\BookmakerBackend.Api:/app:rw"
+    - "C:\\Users\\k_dod\\source\\repos\\BookmakerBackend:/src:rw"
+    - "C:\\Users\\k_dod\\.nuget\\packages:/home/app/.nuget/packages"
     working_dir: "/app"

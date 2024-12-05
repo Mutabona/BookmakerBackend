@@ -1,14 +1,14 @@
 ﻿using BookmakerBackend.Domain.Domain;
 using BookmakerBackend.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql;
 
 namespace BookmakerBackend.DataAccess.Context;
 
 public partial class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext()
-    {
-    }
+    public ApplicationDbContext() {}
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -64,11 +64,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Status)
-                .HasColumnName("status")
-                .HasConversion(
-                    v => v.ToString(),
-                    v => (BetStatus)Enum.Parse(typeof(BetStatus), v)
-                    );
+                .HasColumnName("status");
         });
 
         modelBuilder.Entity<Coefficient>(entity =>
@@ -93,10 +89,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Type)
-                .HasColumnName("type")
-                .HasConversion(
-                    v => v.ToString(),
-                    v => Enum.Parse<CoefficientType>(v));
+                .HasColumnName("type");
         });
 
         modelBuilder.Entity<Event>(entity =>
@@ -135,10 +128,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Result)
-                .HasColumnName("result")
-                .HasConversion(
-                    e => e.ToString(),
-                    e => (ResultStatus)Enum.Parse(typeof(ResultStatus), e));
+                .HasColumnName("result");
         });
 
         modelBuilder.Entity<Team>(entity =>
@@ -184,13 +174,11 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.UsernameNavigation).WithMany(p => p.Transactions)
                 .HasForeignKey(d => d.Username)
                 .HasConstraintName("transaction_username_fkey");
-            
+
             entity
                 .Property(e => e.Type)
                 .HasColumnName("type")
-                .HasConversion(
-                    e => e.ToString(),
-                    e => (TransactionType)Enum.Parse(typeof(TransactionType), e));
+                .HasColumnType("transaction_type");
         });
 
         modelBuilder.Entity<User>(entity =>

@@ -6,7 +6,7 @@ namespace BookmakerBackend.Domain.Domain;
 
 public partial class Transaction
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
     
     public TransactionType Type { get; set; }
 

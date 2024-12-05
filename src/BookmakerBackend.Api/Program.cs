@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using BookmakerBackend.Api.Controllers;
 using BookmakerBackend.Api.Middlewares;
 using BookmakerBackend.Contracts.Users;
@@ -15,7 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions((options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    }));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -53,7 +58,16 @@ builder.Services.AddServices();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"),
+        o =>
+        {
+            o.MapEnum<TransactionType>("transaction_type");
+            o.MapEnum<BetStatus>("bet_status");
+            o.MapEnum<CoefficientType>("coefficient_type");
+            o.MapEnum<ResultStatus>("result_status");
+        });
+            
+    options.EnableSensitiveDataLogging();
 });
 
 

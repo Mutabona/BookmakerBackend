@@ -2,7 +2,7 @@ namespace BookmakerBackend.Domain.Enums;
 
 public enum TransactionType
 {
-    deposit = 0,
+    deposit,
     
-    withdrawal = 1
+    withdrawal
 }
