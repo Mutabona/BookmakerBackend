@@ -5,7 +5,7 @@ namespace BookmakerBackend.Domain.Domain;
 
 public partial class Team
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public string? Name { get; set; }
 

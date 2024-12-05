@@ -43,7 +43,7 @@ public class UserRepository : IUserRepository
     ///<inheritdoc/>
     public async Task DeleteAsync(string username, CancellationToken cancellationToken)
     {
-        var user = await Users.Where(x => x.Username == username).FirstOrDefaultAsync(cancellationToken);
+        var user = await Users.AsNoTracking().Where(x => x.Username == username).FirstOrDefaultAsync(cancellationToken);
         if (user == null) throw new EntityNotFoundException();
         Users.Remove(user);
         await DbContext.SaveChangesAsync(cancellationToken);

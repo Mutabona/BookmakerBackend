@@ -1,12 +1,10 @@
-namespace BookmakerBackend.Contracts.Teams;
+﻿namespace BookmakerBackend.Contracts.Teams;
 
 /// <summary>
-/// Модель команды.
+/// Запрос на добавление команды.
 /// </summary>
-public class TeamDto
+public class AddTeamRequest
 {
-    public Guid? Id { get; set; }
-
     public string? Name { get; set; }
 
     public string? Country { get; set; }
