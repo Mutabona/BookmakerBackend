@@ -64,7 +64,8 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Status)
-                .HasColumnName("status");
+                .HasColumnName("status")
+                .HasColumnType("bet_status");
         });
 
         modelBuilder.Entity<Coefficient>(entity =>
@@ -89,7 +90,8 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Type)
-                .HasColumnName("type");
+                .HasColumnName("type")
+                .HasColumnType("coefficient_type");
         });
 
         modelBuilder.Entity<Event>(entity =>
@@ -128,7 +130,8 @@ public partial class ApplicationDbContext : DbContext
 
             entity
                 .Property(e => e.Result)
-                .HasColumnName("result");
+                .HasColumnName("result")
+                .HasColumnType("result_status");
         });
 
         modelBuilder.Entity<Team>(entity =>

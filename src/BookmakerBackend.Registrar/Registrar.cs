@@ -60,6 +60,7 @@ public static class Registrar
             cfg.AddProfile<TransactionProfile>();
             cfg.AddProfile<TeamProfile>();
             cfg.AddProfile<EventProfile>();
+            cfg.AddProfile<BetProfile>();
         });
         
         configuration.AssertConfigurationIsValid();
