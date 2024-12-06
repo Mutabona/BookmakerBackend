@@ -25,7 +25,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Hospital API", Version = "V1" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Bookmaker API", Version = "V1-Unreal-Ksyushka-Release" });
     options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, $"{typeof(UserController).Assembly.GetName().Name}.xml")));
     options.IncludeXmlComments(Path.Combine(Path.Combine(AppContext.BaseDirectory, $"{typeof(LoginUserRequest).Assembly.GetName().Name}.xml")));
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
