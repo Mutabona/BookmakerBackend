@@ -13,6 +13,8 @@ public class BetService(IBetRepository repository, IMapper mapper) : IBetService
         var bet = mapper.Map<BetDto>(request);
         bet.CoefficientId = coefficientId;
         bet.Username = username;
+        bet.Id = null;
+        bet.Status = null;
         await repository.AddAsync(bet, cancellationToken);
     }
 
