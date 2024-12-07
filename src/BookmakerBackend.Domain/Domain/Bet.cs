@@ -10,7 +10,7 @@ public partial class Bet
 
     public Guid CoefficientId { get; set; }
     
-    public BetStatus? Status { get; set; }
+    public BetStatus Status { get; set; }
 
     public string Username { get; set; } = null!;
 

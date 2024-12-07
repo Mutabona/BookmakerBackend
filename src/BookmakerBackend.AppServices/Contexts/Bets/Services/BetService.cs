@@ -14,7 +14,7 @@ public class BetService(IBetRepository repository, IMapper mapper) : IBetService
         bet.CoefficientId = coefficientId;
         bet.Username = username;
         bet.Id = null;
-        bet.Status = null;
+        bet.Status = "in_progress";
         await repository.AddAsync(bet, cancellationToken);
     }
 

@@ -9,7 +9,7 @@ public class BetDto
 
     public Guid CoefficientId { get; set; }
     
-    public string? Status { get; set; }
+    public string Status { get; set; }
 
     public string Username { get; set; } = null!;
 
