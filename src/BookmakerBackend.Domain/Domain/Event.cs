@@ -8,7 +8,7 @@ public partial class Event
 {
     public Guid? Id { get; set; }
     
-    public ResultStatus Result { get; set; }
+    public ResultStatus? Result { get; set; }
 
     public string Name { get; set; } = null!;
 

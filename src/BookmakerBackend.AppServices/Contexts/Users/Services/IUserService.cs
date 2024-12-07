@@ -64,4 +64,12 @@ public interface IUserService
     /// <param name="cancellationToken">токен отмены.</param>
     /// <returns>Коллекция моделей пользователей.</returns>
     Task<ICollection<UserDto>> SearchUsersByStringAsync(string searchString, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Получает баланс пользователя по логину.
+    /// </summary>
+    /// <param name="login">Логин.</param>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Баланс.</returns>
+    Task<decimal> GetUserBalanceAsync(string login, CancellationToken cancellationToken);
 }

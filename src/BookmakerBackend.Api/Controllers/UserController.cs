@@ -99,4 +99,20 @@ public class UserController(IUserService service) : BaseController
         var users = await service.SearchUsersByStringAsync(search, cancellationToken);
         return Ok(users);
     }
+
+    /// <summary>
+    /// Получает баланс пользователя.
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены.</param>
+    /// <returns>Баланс пользователя.</returns>
+    [Authorize]
+    [HttpGet("Balance")]
+    [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType(typeof(decimal), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> GetBalanceAsync(CancellationToken cancellationToken)
+    {
+        var login = GetCurrentUserUsername();
+        var balance = await service.GetUserBalanceAsync(login, cancellationToken);
+        return Ok(balance);
+    }
 }

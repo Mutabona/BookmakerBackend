@@ -81,6 +81,13 @@ public class UserService(IUserRepository repository, IMapper mapper, IJwtService
         return await repository.SearchUsersByStringAsync(searchString, cancellationToken);
     }
 
+    ///<inheritdoc/>
+    public async Task<decimal> GetUserBalanceAsync(string login, CancellationToken cancellationToken)
+    {
+        var user  = await repository.GetByLoginAsync(login, cancellationToken);
+        return user.Balance.Value;
+    }
+
     private async Task<bool> IsUniqueLoginAsync(string login, CancellationToken cancellationToken)
     {
         try
