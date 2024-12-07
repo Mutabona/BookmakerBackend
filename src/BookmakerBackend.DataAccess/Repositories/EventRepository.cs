@@ -4,6 +4,7 @@ using BookmakerBackend.AppServices.Contexts.Events.Repositories;
 using BookmakerBackend.AppServices.Exceptions;
 using BookmakerBackend.Contracts.Events;
 using BookmakerBackend.Domain.Domain;
+using BookmakerBackend.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookmakerBackend.DataAccess.Repositories;
@@ -44,6 +45,7 @@ public class EventRepository : IEventRepository
         var events = await Events
             .AsNoTracking()
             .Where(x => x.Name.ToLower().Contains(searchString.ToLower()))
+            .Where(x => x.Result == ResultStatus.in_progress)
             .ProjectTo<EventDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         

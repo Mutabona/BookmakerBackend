@@ -23,7 +23,7 @@ public class BetController(IBetService service) : BaseController
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns></returns>
     [Authorize]
-    [HttpPost]
+    [HttpPost("/Coefficient/{coefficientId}/Bet")]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> AddAsync(Guid coefficientId, AddBetRequest request, CancellationToken cancellationToken)
