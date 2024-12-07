@@ -45,7 +45,6 @@ public class EventRepository : IEventRepository
         var events = await Events
             .AsNoTracking()
             .Where(x => x.Name.ToLower().Contains(searchString.ToLower()))
-            .Where(x => x.Result == ResultStatus.in_progress)
             .ProjectTo<EventDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         
