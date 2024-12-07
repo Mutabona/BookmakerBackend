@@ -5,7 +5,7 @@ namespace BookmakerBackend.Contracts.Events;
 /// </summary>
 public class EventDto
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
     
     public string Result { get; set; }
 

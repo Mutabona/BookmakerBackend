@@ -6,7 +6,7 @@ namespace BookmakerBackend.Domain.Domain;
 
 public partial class Event
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
     
     public ResultStatus Result { get; set; }
 
