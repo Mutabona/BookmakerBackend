@@ -11,6 +11,7 @@ public class EventService(IEventRepository repository, IMapper mapper) : IEventS
     public async Task AddAsync(AddEventRequest request, CancellationToken cancellationToken)
     {
         var eventEntity = mapper.Map<EventDto>(request);
+        eventEntity.Result = "in_progress"; 
         await repository.AddAsync(eventEntity, cancellationToken);
     }
 
