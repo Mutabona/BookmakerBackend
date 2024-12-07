@@ -27,6 +27,7 @@ public class TransactionRepository : ITransactionRepository
         var transactions = await Transactions
             .AsNoTracking()
             .Where(x => x.Username == login)
+            .OrderByDescending(x => x.DateTime)
             .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         return transactions;
