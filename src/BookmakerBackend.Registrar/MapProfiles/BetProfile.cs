@@ -13,9 +13,8 @@ public class BetProfile : Profile
     public BetProfile()
     {
         CreateMap<AddBetRequest, BetDto>(MemberList.None);
-        
-        CreateMap<BetDto, Bet>(MemberList.None)
-            .ForMember(x => x.Status, map => map.MapFrom(x => Enum.Parse<BetStatus>(x.Status)));
+
+        CreateMap<BetDto, Bet>(MemberList.None);
         
         CreateMap<Bet, BetDto>(MemberList.None)
             .ForMember(x => x.Status, map => map.MapFrom(x => x.Status.ToString()));
