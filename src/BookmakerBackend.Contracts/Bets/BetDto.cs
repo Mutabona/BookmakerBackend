@@ -15,7 +15,7 @@ public class BetDto
 
     public decimal Amount { get; set; }
 
-    public string EventName { get; set; }
+    public string EventTitle { get; set; }
     
     public string CoefficientType { get; set; }
     
