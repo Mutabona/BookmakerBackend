@@ -89,7 +89,7 @@ public class UserController(IUserService service) : BaseController
     /// <param name="search">Строка.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей пользователей.</returns>
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Worker")]
     [HttpGet("Search/{search}")]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]

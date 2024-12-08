@@ -37,7 +37,7 @@ public class TransactionController(ITransactionService service) : BaseController
     /// <param name="login">Логин.</param>
     /// <param name="token">Токен отмены.</param>
     /// <returns>Коллекция моделей транзакций.</returns>
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin, Worker")]
     [HttpGet("{login}")]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
