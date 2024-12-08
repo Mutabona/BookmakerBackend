@@ -67,11 +67,11 @@ public class UserService(IUserRepository repository, IMapper mapper, IJwtService
     }
 
     ///<inheritdoc/>
-    public async Task UpdateUserRoleAsync(string login, string role, CancellationToken cancellationToken)
+    public async Task UpdateUserRoleAsync(string login, ChangeRoleRequest request, CancellationToken cancellationToken)
     {
         var user = await repository.GetByLoginAsync(login, cancellationToken);
         if (user == null) throw new EntityNotFoundException();
-        user.Role = role;
+        user.Role = request.Role;
         await repository.UpdateAsync(user, cancellationToken);
     }
 

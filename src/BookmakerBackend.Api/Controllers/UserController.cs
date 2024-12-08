@@ -77,9 +77,9 @@ public class UserController(IUserService service) : BaseController
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     [ProducesResponseType((int)HttpStatusCode.Forbidden)]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<IActionResult> ChangeUserRoleAsync(string login, string role, CancellationToken cancellationToken)
+    public async Task<IActionResult> ChangeUserRoleAsync(string login, ChangeRoleRequest request, CancellationToken cancellationToken)
     {
-        await service.UpdateUserRoleAsync(login, role, cancellationToken);
+        await service.UpdateUserRoleAsync(login, request, cancellationToken);
         return Ok();
     }
 

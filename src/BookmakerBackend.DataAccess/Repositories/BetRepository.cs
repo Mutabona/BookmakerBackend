@@ -33,7 +33,11 @@ public class BetRepository : IBetRepository
     /// <inheritdoc/>
     public async Task<BetDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var bet = await Bets.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id, cancellationToken: cancellationToken);
+        var bet = await Bets
+            .AsNoTracking()
+            .Include(b => b.Coefficient)
+            .Include(b => b.Coefficient.Event)
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken: cancellationToken);
         
         if (bet == null) throw new EntityNotFoundException();
         
@@ -46,6 +50,9 @@ public class BetRepository : IBetRepository
         var bets = await Bets
             .AsNoTracking()
             .Where(b => b.Username == username)
+            .Include(b => b.Coefficient)
+            .Include(b => b.Coefficient.Event)
+            .OrderByDescending(x => x.Coefficient.Event.DateTime)
             .ProjectTo<BetDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
         

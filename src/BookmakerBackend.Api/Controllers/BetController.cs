@@ -72,7 +72,7 @@ public class BetController(IBetService service) : BaseController
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Коллекция моделей ставок.</returns>
     [Authorize]
-    [HttpGet("User/{userId}/Bet")]
+    [HttpGet("User/Bet")]
     [ProducesResponseType(typeof(ICollection<BetDto>), (int)HttpStatusCode.OK)]
     [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
     public async Task<IActionResult> GetByUsernameAsync(CancellationToken cancellationToken)

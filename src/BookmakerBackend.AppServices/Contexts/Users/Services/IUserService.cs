@@ -47,15 +47,15 @@ public interface IUserService
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns></returns>
     Task UpdateUserAsync(string login, UpdateUserRequest request, CancellationToken cancellationToken);
-    
+
     /// <summary>
-    /// Изменяет роль пользователя.
+    /// Изменяет роль пользователя по модели запроса.
     /// </summary>
     /// <param name="login">Логин пользователя.</param>
-    /// <param name="role">Новая роль.</param>
+    /// <param name="request">Запрос.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns></returns>
-    Task UpdateUserRoleAsync(string login, string role, CancellationToken cancellationToken);
+    Task UpdateUserRoleAsync(string login, ChangeRoleRequest request, CancellationToken cancellationToken);
     
     /// <summary>
     /// Выполняет поиск пользователей по строке.
